@@ -1,4 +1,4 @@
-<?php namespace Angel\Document;
+<?php namespace Angel\Documents;
 
 use Angel\Core\LinkableModel;
 use App, Config, Input;
