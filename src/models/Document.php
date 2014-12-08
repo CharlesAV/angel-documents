@@ -17,7 +17,7 @@ class Document extends LinkableModel {
 	{
 		return array(
 			'name' => 'required',
-			'file' => 'required'
+			//'file' => 'required'
 		);
 	}
 	

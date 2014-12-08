@@ -3,19 +3,20 @@
 @section('title','Documents')
 
 @section('content')
+<main class="documents">
 	<div class="row">
-		<h1>Documents</h1>
-		@foreach($testimonials as $testimonial) 
-		<div class="testimonial-item">
-			<div class="testimonial-html">
-				{{ $testimonial->html }}
+		<div class="column large-12">
+			<h1>Documents</h1>
+			@foreach($documents as $document) 
+			<div class="document-item">
+				<div class="document-name"><a href="{{ asset($document->file) }}">{{ $document->name }}</a></div>
+				<div class="document-html">
+					{{ $document->html }}
+				</div>
+				<hr />
 			</div>
-			<div class="testimonial-author">-{{ $testimonial->author }}</div>
-			@if($testimonial->position) 
-			<div class="testimonial-position">&nbsp;<em>{{ $testimonial->position }}</em></div>
-			@endif
-			<hr />
+			@endforeach
 		</div>
-		@endforeach
 	</div>
+</main>
 @stop

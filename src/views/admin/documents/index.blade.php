@@ -3,23 +3,6 @@
 @section('title', 'Documents')
 
 @section('js')
-	@if (Config::get('core::languages'))
-		<script>
-			$(function() {
-				$('#copyChecked').click(function(e) {
-					if (!$('.idCheckbox:checked').length) {
-						alert('You must first select at least one document to copy!');
-						return;
-					}
-					$('#all').val(0);
-					$('#copyModal').modal('show');
-				});
-				$('#copyAll').click(function() {
-					$('#all').val(1);
-				});
-			});
-		</script>
-	@endif
 	{{ HTML::script('packages/angel/core/js/jquery/jquery-ui.min.js') }}
 	<script>
 		$(function() {
@@ -50,9 +33,6 @@
 			{{ Form::close() }}
 		</div>
 	</div>
-	@if (Config::get('core::languages') && !$single_language)
-		{{ Form::open(array('url'=>admin_uri('documents/copy'), 'role'=>'form', 'class'=>'noSubmitOnEnter')) }}
-	@endif
 </div>
 <div class="row">
 	<div class="col-sm-12">
@@ -60,10 +40,7 @@
 			<thead>
 				<tr>
 					<th style="width:80px;"></th>
-					@if (Config::get('core::languages') && !$single_language)
-						<th style="width:60px;">Copy</th>
-					@endif
-					<th>Author</th>
+					<th>Name</th>
 				</tr>
 			</thead>
 			<tbody data-url="documents/order">
@@ -79,10 +56,7 @@
 								<span class="glyphicon glyphicon-resize-vertical"></span>
 							</button>
 						</td>
-						@if (Config::get('core::languages') && !$single_language)
-							<td>{{ Form::checkbox('ids[]', $document->id, false, array('class'=>'idCheckbox')) }}</td>
-						@endif
-						<td>{{ $document->author }}</td>
+						<td>{{ $document->name }}</td>
 					</tr>
 				@endforeach
 			@else 
@@ -95,36 +69,5 @@
 			</tbody>
 		</table>
 	</div>
-	@if (Config::get('core::languages') && !$single_language)
-		<div class="row pad">
-			{{ Form::hidden('all', 0, array('id'=>'all')) }}
-			<button type="button" id="copyChecked" class="btn btn-sm btn-primary">Copy checked...</button>
-			<button type="button" id="copyAll" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#copyModal">Copy all...</button>
-		</div>
-		<div class="modal fade" id="copyModal" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title">Copy to...</h4>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<?php
-								$language_drop_minus_active = $language_drop;
-								unset($language_drop_minus_active[$active_language->id]);
-							?>
-							{{ Form::label('language_id', 'Language') }}
-							{{ Form::select('language_id', $language_drop_minus_active, $active_language->id, array('class' => 'form-control')) }}
-						</div>
-						<p class="text-right">
-							{{ Form::submit('Done', array('class'=>'btn btn-primary')) }}
-						</p>
-					</div>{{-- Modal --}}
-				</div>{{-- Modal --}}
-			</div>{{-- Modal --}}
-		</div>{{-- Modal --}}
-	{{ Form::close() }}
-	@endif
 </div>
 @stop

@@ -30,44 +30,32 @@
 	<div class="col-md-9">
 		<table class="table table-striped">
 			<tbody>
-			@if (Config::get('core::languages'))
 				<tr>
 					<td>
-						{{ Form::label('language_id', 'Language') }}
+						{{ Form::label('name', 'Name') }}
 					</td>
 					<td>
 						<div style="width:300px">
-							{{ Form::select('language_id', $language_drop, $active_language->id, array('class' => 'form-control')) }}
-						</div>
-					</td>
-				</tr>
-			@endif
-				<tr>
-					<td>
-						{{ Form::label('author', 'Author') }}
-					</td>
-					<td>
-						<div style="width:300px">
-							{{ Form::text('author', null, array('class'=>'form-control', 'placeholder'=>'Author')) }}
+							{{ Form::text('name', null, array('class'=>'form-control')) }}
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						{{ Form::label('position', 'Position') }}
-					</td>
-					<td>
-						<div style="width:300px">
-							{{ Form::text('position', null, array('class'=>'form-control', 'placeholder'=>'Position')) }}
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						{{ Form::label('html', 'Text') }}
+						{{ Form::label('html', 'Description') }}
 					</td>
 					<td>
 						{{ Form::textarea('html', null, array('class'=>'ckeditor')) }}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{{ Form::label('file', 'File') }}
+					</td>
+					<td>
+						{{ Form::text('file', null, array('class'=>'form-control','style' => 'float:left;width:300px;')) }}
+						<button type="button" class="btn btn-default fileBrowse" style="float:left">Browse...</button>
+						<div class="clearfix"></div>
 					</td>
 				</tr>
 			</tbody>
