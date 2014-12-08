@@ -1,0 +1,25 @@
+{
+    "name": "angel/documents",
+    "description": "",
+    "authors": [
+        {
+            "name": "Charles Konsor",
+            "email": "charles@angelvisiontech.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.1.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations",
+            "src/controllers",
+            "src/models"
+        ],
+        "psr-0": {
+            "Angel\\Documents\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
